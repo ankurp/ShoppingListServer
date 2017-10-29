@@ -18,6 +18,7 @@ extension Config {
     /// Add all models that should have their
     /// schemas prepared before the app boots
     private func setupPreparations() throws {
-        preparations.append(Post.self)
+        preparations.append(ShoppingList.self)
+        preparations.append(Item.self)
     }
 }
