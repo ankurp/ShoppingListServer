@@ -89,10 +89,3 @@ extension Request {
         return try ShoppingList(json: json)
     }
 }
-
-/// Since ShoppingListController doesn't require anything to
-/// be initialized we can conform it to EmptyInitializable.
-///
-/// This will allow it to be passed by type.
-extension ShoppingListController: EmptyInitializable { }
-

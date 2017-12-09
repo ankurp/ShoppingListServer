@@ -4,7 +4,6 @@ import HTTP
 
 final class ShoppingList: Model {
     let storage = Storage()
-    
     // MARK: Properties and database keys
     
     var name: String
@@ -71,10 +70,11 @@ extension ShoppingList: JSONConvertible {
     }
     
     func makeJSON() throws -> JSON {
+        let i = try items.all()
         var json = JSON()
         try json.set(ShoppingList.Keys.id, id)
         try json.set(ShoppingList.Keys.name, name)
-        try json.set("items", items.all())
+        try json.set("items", i)
         return json
     }
 }

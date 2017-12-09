@@ -93,9 +93,3 @@ extension Request {
         return try Item(json: json)
     }
 }
-
-/// Since ItemController doesn't require anything to
-/// be initialized we can conform it to EmptyInitializable.
-///
-/// This will allow it to be passed by type.
-extension ItemController: EmptyInitializable { }

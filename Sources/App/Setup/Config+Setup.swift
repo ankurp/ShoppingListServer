@@ -1,4 +1,6 @@
 import FluentProvider
+import HealthcheckProvider
+import MongoProvider
 
 extension Config {
     public func setup() throws {
@@ -13,6 +15,8 @@ extension Config {
     /// Configure providers
     private func setupProviders() throws {
         try addProvider(FluentProvider.Provider.self)
+        try addProvider(HealthcheckProvider.Provider.self)
+        try addProvider(MongoProvider.Provider.self)
     }
     
     /// Add all models that should have their
