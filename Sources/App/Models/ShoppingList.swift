@@ -70,11 +70,10 @@ extension ShoppingList: JSONConvertible {
     }
     
     func makeJSON() throws -> JSON {
-        let i = try items.all()
         var json = JSON()
         try json.set(ShoppingList.Keys.id, id)
         try json.set(ShoppingList.Keys.name, name)
-        try json.set("items", i)
+        try json.set("items", items.all())
         return json
     }
 }
