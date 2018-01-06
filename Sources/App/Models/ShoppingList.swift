@@ -78,6 +78,13 @@ extension ShoppingList: JSONConvertible {
   }
 }
 
+extension ShoppingList: Replaceable {
+  func replaceAttributes(from list: ShoppingList) {
+    self.name = list.name
+  }
+}
+
+
 // MARK: HTTP
 
 // This allows ShoppingList models to be returned
