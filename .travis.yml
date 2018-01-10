@@ -24,3 +24,6 @@ script:
 
 after_success:
     - eval "$(curl -sL https://swift.vapor.sh/codecov)"
+
+services:
+  - mongodb
