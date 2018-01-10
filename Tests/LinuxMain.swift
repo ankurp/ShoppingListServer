@@ -5,6 +5,7 @@ import XCTest
 
 XCTMain([
     // AppTests
+    testCase(ShoppingListControllerTests.allTests),
     testCase(RouteTests.allTests)
 ])
 
