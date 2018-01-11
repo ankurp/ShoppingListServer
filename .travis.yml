@@ -11,6 +11,9 @@ before_install:
             brew tap vapor/tap;
             brew update;
             brew install vapor;
+            brew install mongodb;
+            sudo mkdir -p /data/db;
+            brew services start mongodb;
         else
             eval "$(curl -sL https://apt.vapor.sh)";
             sudo apt-get install vapor;
@@ -18,12 +21,8 @@ before_install:
         fi
 
 script:
-    - swift build
     - swift build -c release
     - swift test
-
-after_success:
-    - eval "$(curl -sL https://swift.vapor.sh/codecov)"
 
 services:
   - mongodb
