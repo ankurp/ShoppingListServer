@@ -42,6 +42,7 @@ extension Droplet {
     let shoppingListController = ShoppingListController(view)
     let itemController = ItemController(view)
     
+    // Route to
     let loginRoutes = grouped([sessionsMiddleware, persistMiddleware])
     loginRoutes.get() { req in
       if req.auth.isAuthenticated(User.self) {
@@ -60,6 +61,7 @@ extension Droplet {
       return Response(redirect: "/shopping_lists")
     }
     
+    // Routes for Web
     let authRoutes = grouped([redirect, sessionsMiddleware, persistMiddleware, passwordMiddleware])
     authRoutes.resource("shopping_lists", shoppingListController)
     authRoutes.resource("items", itemController)
@@ -68,11 +70,14 @@ extension Droplet {
       return Response(redirect: "/")
     }
     
+    // Routes for API for native Apps
     let tokenAuthRoutes = grouped(tokenMiddleware)
     tokenAuthRoutes.resource("api/shopping_lists", shoppingListController)
     tokenAuthRoutes.resource("api/items", itemController)
     
-    authRoutes.post("token") { req in
+    // Route to get Token after authentication
+    grouped(passwordMiddleware)
+      .post("token") { req in
       let user = try req.user()
       let existingToken = try Token.makeQuery().filter(Token.Keys.userId, user.id).first()
       let token = try Token.generate(for: user)
