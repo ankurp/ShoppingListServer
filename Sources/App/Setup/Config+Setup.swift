@@ -27,5 +27,7 @@ extension Config {
   private func setupPreparations() throws {
     preparations.append(ShoppingList.self)
     preparations.append(Item.self)
+    preparations.append(User.self)
+    preparations.append(Token.self)
   }
 }

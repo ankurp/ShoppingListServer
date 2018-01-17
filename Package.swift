@@ -14,9 +14,10 @@ let package = Package(
     .package(url: "https://github.com/ankurp/healthcheck-provider.git", .upToNextMajor(from: "1.0.0")),
     .package(url: "https://github.com/vapor-community/mongo-provider.git", .upToNextMajor(from: "2.0.0")),
     .package(url: "https://github.com/vapor/leaf-provider.git", .upToNextMajor(from: "1.1.0")),
+    .package(url: "https://github.com/vapor/auth-provider.git", .upToNextMajor(from: "1.2.0")),
     ],
   targets: [
-    .target(name: "App", dependencies: ["Vapor", "FluentProvider", "HealthcheckProvider", "MongoProvider", "LeafProvider"],
+    .target(name: "App", dependencies: ["Vapor", "FluentProvider", "HealthcheckProvider", "MongoProvider", "LeafProvider", "AuthProvider"],
             exclude: [
               "Config",
               "Public",

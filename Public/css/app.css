@@ -76,3 +76,20 @@ body {
   font-size: 1rem;
   flex: 1;
 }
+
+.heading {
+  text-align: center;
+}
+
+.grid-x {
+  justify-content: center;
+}
+
+form.columns {
+  padding: 20px;
+  max-width: 300px;
+}
+
+form input[type=submit] {
+  width: 100%;
+}

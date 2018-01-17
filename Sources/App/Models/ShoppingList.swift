@@ -7,18 +7,24 @@ final class ShoppingList: Model {
   // MARK: Properties and database keys
   
   var name: String
+  var userId: Identifier
   var items: Children<ShoppingList, Item> {
     return children()
+  }
+  var user: Parent<ShoppingList, User> {
+    return parent(id: userId)
   }
   
   struct Keys {
     static let id = "id"
     static let name = "name"
+    static let userId = "user__id"
   }
   
   /// Creates a new ShoppingList
-  init(name: String) {
+  init(name: String, userId: Identifier) {
     self.name = name
+    self.userId = userId
   }
   
   // MARK: Fluent Serialization
@@ -27,12 +33,14 @@ final class ShoppingList: Model {
   /// database row
   init(row: Row) throws {
     name = try row.get(ShoppingList.Keys.name)
+    userId = try row.get(ShoppingList.Keys.userId)
   }
   
   // Serializes the ShoppingList to the database
   func makeRow() throws -> Row {
     var row = Row()
     try row.set(ShoppingList.Keys.name, name)
+    try row.set(ShoppingList.Keys.userId, userId)
     return row
   }
 }
@@ -46,6 +54,7 @@ extension ShoppingList: Preparation {
     try database.create(self) { builder in
       builder.id()
       builder.string(ShoppingList.Keys.name)
+      builder.parent(User.self)
     }
   }
   
@@ -65,7 +74,8 @@ extension ShoppingList: Preparation {
 extension ShoppingList: JSONConvertible {
   convenience init(json: JSON) throws {
     self.init(
-      name: try json.get(ShoppingList.Keys.name)
+      name: try json.get(ShoppingList.Keys.name),
+      userId: try json.get(ShoppingList.Keys.userId)
     )
   }
   
@@ -73,6 +83,7 @@ extension ShoppingList: JSONConvertible {
     var json = JSON()
     try json.set(ShoppingList.Keys.id, id)
     try json.set(ShoppingList.Keys.name, name)
+    try json.set(ShoppingList.Keys.userId, userId)
     try json.set("items", items.all())
     return json
   }
@@ -81,9 +92,9 @@ extension ShoppingList: JSONConvertible {
 extension ShoppingList: Replaceable {
   func replaceAttributes(from list: ShoppingList) {
     self.name = list.name
+    self.userId = list.userId
   }
 }
-
 
 // MARK: HTTP
 

@@ -3,7 +3,7 @@
   "client": "engine",
   "console": "terminal",
   "log": "console",
-  "hash": "crypto",
+  "hash": "bcrypt",
   "cipher": "crypto",
   "middleware": ["error", "date", "file", "response-formatter"],
   "commands": ["prepare"],

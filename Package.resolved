@@ -2,6 +2,24 @@
   "object": {
     "pins": [
       {
+        "package": "Auth",
+        "repositoryURL": "https://github.com/vapor/auth.git",
+        "state": {
+          "branch": null,
+          "revision": "b8a0d6d7ac141831c999bf2458408dc2ec2edb39",
+          "version": "1.2.1"
+        }
+      },
+      {
+        "package": "AuthProvider",
+        "repositoryURL": "https://github.com/vapor/auth-provider.git",
+        "state": {
+          "branch": null,
+          "revision": "c8a89d5f32873a7ec6037e2c78a192526c496618",
+          "version": "1.2.0"
+        }
+      },
+      {
         "package": "BCrypt",
         "repositoryURL": "https://github.com/vapor/bcrypt.git",
         "state": {
